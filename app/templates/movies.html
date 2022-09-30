@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <p>This is my template rendered page</p> -->
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+        </tr>
+    {% for movie in movies_data %}
+    <tr>
+        <td>{{movie[1]}}</td>
+        <td>{{movie[2]}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    </br>    </br>
+    <table>
+    {% for actor in actors_data %}
+    <tr>
+        <td>{{actor[1]}}</td>
+        <td>{{actor[2]}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>
