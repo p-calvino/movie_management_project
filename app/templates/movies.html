@@ -1,33 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- <p>This is my template rendered page</p> -->
-    <table>
+{% include "header.html" %}
+<form action="{{ url_for('delete_movie') }}" method="POST">   
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
         <tr>
-            <th>Title</th>
-            <th>Year</th>
+            <th scope="col" class="col-8">Title</th>
+            <th scope="col" class="col-4">Release Year</th>
+            <th scope="col" class="col-1"></th>
         </tr>
-    {% for movie in movies_data %}
-    <tr>
-        <td>{{movie[1]}}</td>
-        <td>{{movie[2]}}</td>
-    </tr>
-    {% endfor %}
-    </table>
-    </br>    </br>
-    <table>
-    {% for actor in actors_data %}
-    <tr>
-        <td>{{actor[1]}}</td>
-        <td>{{actor[2]}}</td>
-    </tr>
-    {% endfor %}
-    </table>
-</body>
-</html>
+    </thead>
+<tbody>
+{% for movie in movies_data %}
+<tr>    
+    <td id="{{movie[0]}}">{{movie[1]}}</td>
+    <td id="{{movie[0]}}">{{movie[2]}}</td>
+    <td><button class="btn btn-danger" name="delete" value="{{movie[0]}}" type="submit">Delete</button>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</form>
+<div>
+    <a class="btn btn-primary" href="{{ url_for('new_movie') }}" role="button">Add new Movie</a>
+</div>
+{% include "footer.html" %}

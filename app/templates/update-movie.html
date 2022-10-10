@@ -1,0 +1,29 @@
+{% include "header.html" %}
+<div class="container">
+    <h1> Update a movie</h1>
+</div>
+<form action="{{ url_for('update_movie') }}" method="POST">   
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Release Year</th>
+            <th scope="col">Director</th>
+            <th scope="col">Main Actor</th>
+        </tr>
+    </thead>
+<tbody>
+{% for movie in movies_data %}
+<tr>    
+    <td><input type="text" id="{{movie[0]}}" name="movie_title">{{movie[1]}}</td>
+    <td><input id="{{movie[0]}}" name="release_year">{{movie[2]}}</td>
+    <td><button name="delete" value="{{movie[0]}}" type="submit">X</button></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</form>
+<div>
+    <a class="btn btn-primary" role="button">Update movie</a>
+</div>
+{% include "footer.html" %}

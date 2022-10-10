@@ -1,15 +1,23 @@
-data "aws_ami" "aws_basic_linux" {
-  owners      = [var.aws_owner_id]
-  most_recent = true
+data "aws_vpc" "vpc" {
   filter {
-    name   = "name"
-    values = [var.aws_ami_name]
-  }
-}
-data "aws_vpc" "main_vpc" {
-  filter {
-    name   = "name"
-    values = [var.aws_vpc_name]
+    name   = "tag:Name"
+    values = [var.vpc_name]
   }
 }
 
+data "aws_subnet" "public_subnet_a" {
+  filter {
+    name   = "tag:Name"
+    values = [var.public_subnet_1_name]
+  }
+}
+
+data "aws_ami" "amz_linux_image" {
+  most_recent = true
+  owners      = [var.amzn_ami_owner]
+
+  filter {
+    name   = "name"
+    values = [var.amzn_ami_name]
+  }
+}
